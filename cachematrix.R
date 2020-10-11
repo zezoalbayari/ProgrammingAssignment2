@@ -27,6 +27,11 @@ cacheSolve <- function(x, ...) {
     return(invert)
   }
   data <- x$get()
+  test <- try(solve(m),silent=T)
+  if(is.na(as.logical(test))){
+    message("The matrix is not invertible")
+    return(x$get())
+  }
   invert <- solve(data, ...)
   x$setinvert(invert)
   invert 
